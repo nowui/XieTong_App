@@ -4,8 +4,8 @@ import Toast from 'antd-mobile/lib/toast'
 import 'antd-mobile/lib/toast/style/index.css'
 
 const Helper = {
-	host: 'http://172.31.2.43:8080',
-  //host: 'http://api.hongluomeng.nowui.com',
+	host: 'http://localhost:8080',
+  //host: 'http://api.xietong.nowui.com',
   inputWidth: 390,
   formItemLayout: {
     labelCol: { span: 3 },

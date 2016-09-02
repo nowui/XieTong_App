@@ -22,8 +22,8 @@ class Login extends Component {
     super(props)
 
     this.state = {
-      user_account: 'aaa',
-      user_password: 'aaa'
+      user_account: '',
+      user_password: ''
     }
   }
 
@@ -43,6 +43,18 @@ class Login extends Component {
         }
 
         Toast.fail(message, Helper.duration)
+
+        return
+      }
+
+      if(values.user_account == '') {
+        Toast.fail('学号为空', Helper.duration)
+
+        return
+      }
+
+      if(values.user_password == '') {
+        Toast.fail('密码为空', Helper.duration)
 
         return
       }
@@ -72,7 +84,7 @@ class Login extends Component {
 
     return (
       <Form horizontal>
-        <NavBar iconName={false}>登录</NavBar>
+        <NavBar iconName={false}>学生登录</NavBar>
         <List style={{ marginTop: '50px' }}>
           <List.Body>
             <InputItem {...getFieldProps('user_account', {
@@ -80,11 +92,12 @@ class Login extends Component {
               })}
               clear
               placeholder="请输入学号"
-              >帐号</InputItem>
+              >学号</InputItem>
             <InputItem
               {...getFieldProps('user_password', {
                 initialValue: ''
               })}
+              type="password"
               format="password"
               clear
               placeholder="请输入密码"

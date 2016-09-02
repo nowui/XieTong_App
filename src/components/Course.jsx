@@ -18,11 +18,11 @@ const course_class = [{
   value: '17',
   text: '星期一第七节'
 }, {
-  value: '18',
-  text: '星期一第八节'
-}, {
   value: '27',
   text: '星期二第七节'
+}, {
+  value: '28',
+  text: '星期二第八节'
 }, {
   value: '47',
   text: '星期四第七节'
