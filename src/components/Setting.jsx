@@ -40,6 +40,15 @@ class Setting extends Component {
     })
   }
 
+  onClickListItem(id) {
+    this.props.router.push({
+      pathname: '/mycourse',
+      query: {
+
+      }
+    })
+  }
+
   render() {
     return (
       <div>
@@ -50,6 +59,14 @@ class Setting extends Component {
               <div className={styles.avatar}></div>
               <div className={styles.name}>{Helper.getName()}</div>
               <div className={styles.school}>佛山协同(国际)学校</div>
+            </List.Item>
+          </List.Body>
+        </List>
+
+        <List style={{ marginTop: '50px' }}>
+          <List.Body>
+            <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this)}>
+              我申请的课程
             </List.Item>
           </List.Body>
         </List>

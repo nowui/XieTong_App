@@ -83,7 +83,7 @@ class Login extends Component {
     const { getFieldProps } = this.props.form
 
     return (
-      <Form horizontal>
+      <div>
         <NavBar iconName={false}>学生登录</NavBar>
         <List style={{ marginTop: '50px' }}>
           <List.Body>
@@ -107,7 +107,7 @@ class Login extends Component {
         <div style={{ margin: '0 8px', marginTop: '100px' }}>
           <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
         </div>
-      </Form>
+      </div>
     )
   }
 }

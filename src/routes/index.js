@@ -6,6 +6,7 @@ import Index from '../components/Index'
 import Course from '../components/Course'
 import History from '../components/History'
 import Setting from '../components/Setting'
+import MyCourse from '../components/MyCourse'
 import Helper from '../common/Helper'
 
 const validate = function (next, replace, callback) {
@@ -23,6 +24,7 @@ const Routes = ({ history }) =>
       <Route path="course/:course_id" component={Course}></Route>
       <Route path="history/:course_id" component={History}></Route>
       <Route path="setting" component={Setting}></Route>
+      <Route path="mycourse" component={MyCourse}></Route>
 	    <Route path="login" component={Login}></Route>
 	    <Route path="*" component={NotFound}></Route>
     </Route>

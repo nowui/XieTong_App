@@ -73,7 +73,26 @@ const Helper = {
     localStorage.removeItem(this.token)
 
     localStorage.removeItem(this.name)
-  }
+  },
+  course_class: [{
+    value: '17',
+    text: '星期一第七节'
+  }, {
+    value: '27',
+    text: '星期二第七节'
+  }, {
+    value: '28',
+    text: '星期二第八节'
+  }, {
+    value: '47',
+    text: '星期四第七节'
+  }, {
+    value: '48',
+    text: '星期四第八节'
+  }, {
+    value: '56',
+    text: '星期五第六节'
+  }]
 }
 
 export default Helper

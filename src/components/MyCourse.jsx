@@ -4,17 +4,16 @@ import Helper from '../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
 import List from 'antd-mobile/lib/list'
-import Icon from 'antd-mobile/lib/icon'
 import Button from 'antd-mobile/lib/button'
-import Toast from 'antd-mobile/lib/toast'
+import Icon from 'antd-mobile/lib/icon'
+
 
 import 'antd-mobile/lib/nav-bar/style/index.css'
 import 'antd-mobile/lib/list/style/index.css'
-import 'antd-mobile/lib/icon/style/index.css'
 import 'antd-mobile/lib/button/style/index.css'
-import 'antd-mobile/lib/toast/style/index.css'
+import 'antd-mobile/lib/icon/style/index.css'
 
-class Index extends Component {
+class MyCourse extends Component {
 
   constructor(props) {
     super(props)
@@ -32,7 +31,7 @@ class Index extends Component {
     let self = this
 
     Helper.ajax({
-      url: '/course/list2',
+      url: '/course/my',
       data: {
         page: 0,
         limit: 0
@@ -60,38 +59,23 @@ class Index extends Component {
     })
   }
 
-  onClickListItem(id) {
-    this.props.router.push({
-      pathname: '/course/' + id,
-      query: {
-
-      }
-    })
-  }
-
   onClickLeft() {
-    this.load()
+    this.props.router.goBack()
   }
 
   render() {
     return (
       <div>
-        <NavBar iconName={false} leftContent={[<Icon key="0" type="reload" />]} rightContent={[<Link key="0" to="/setting" style={{color: '#ffffff'}}>帐号</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程列表</NavBar>
+        <NavBar leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的课程</NavBar>
         <List>
           <List.Body>
             {
               this.state.list.map(function (item, index) {
                 return (
-                  <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.course_id)}>
+                  <List.Item key={index}>
                     <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
-                    <div style={{width: '400px', height: '50px', flex: 2}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
-                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>剩余名额:</span> <span style={{color: '#ff0000'}}>{item.course_apply_limit - item.course_apply_count}</span></div>
-                    {
-                      item.isApply ?
-                      <div style={{position: 'absolute', right: '78px', top: '70px', color: '#888'}}>已申请</div>
-                      :
-                      ''
-                    }
+                    <div style={{height: '50px'}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
+                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>地点:</span> {item.course_address}</div>
                   </List.Item>
                 )
               }.bind(this))
@@ -103,4 +87,4 @@ class Index extends Component {
   }
 }
 
-export default withRouter(Index)
+export default withRouter(MyCourse)
