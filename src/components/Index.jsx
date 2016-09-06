@@ -7,12 +7,16 @@ import List from 'antd-mobile/lib/list'
 import Icon from 'antd-mobile/lib/icon'
 import Button from 'antd-mobile/lib/button'
 import Toast from 'antd-mobile/lib/toast'
+import TabBar from 'antd-mobile/lib/tab-bar'
 
 import 'antd-mobile/lib/nav-bar/style/index.css'
 import 'antd-mobile/lib/list/style/index.css'
 import 'antd-mobile/lib/icon/style/index.css'
 import 'antd-mobile/lib/button/style/index.css'
 import 'antd-mobile/lib/toast/style/index.css'
+import 'antd-mobile/lib/tab-bar/style/index.css'
+
+let list = []
 
 class Index extends Component {
 
@@ -20,15 +24,16 @@ class Index extends Component {
     super(props)
 
     this.state = {
-      list: []
+      selectedTab: 'indexTab',
+      list: list
     }
   }
 
   componentDidMount() {
-    this.load()
+    this.load(list.length > 0)
   }
 
-  load = function(currentPage) {
+  load = function(upLoad) {
     let self = this
 
     Helper.ajax({
@@ -37,6 +42,7 @@ class Index extends Component {
         page: 0,
         limit: 0
       },
+      unLoad: upLoad,
       success: function(data) {
         for(let i = 0; i < data.length; i++) {
           let course = data[i]
@@ -49,6 +55,8 @@ class Index extends Component {
             }
           }
         }
+
+        list = data
 
         self.setState({
           list: data
@@ -70,35 +78,66 @@ class Index extends Component {
   }
 
   onClickLeft() {
-    this.load()
+    this.load(false)
   }
 
   render() {
     return (
-      <div>
-        <NavBar iconName={false} leftContent={[<Icon key="0" type="reload" />]} rightContent={[<Link key="0" to="/setting" style={{color: '#ffffff'}}>帐号</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程列表</NavBar>
-        <List>
-          <List.Body>
-            {
-              this.state.list.map(function (item, index) {
-                return (
-                  <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.course_id)}>
-                    <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
-                    <div style={{width: '400px', height: '50px', flex: 2}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
-                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>剩余名额:</span> <span style={{color: '#ff0000'}}>{item.course_apply_limit - item.course_apply_count}</span></div>
-                    {
-                      item.isApply ?
-                      <div style={{position: 'absolute', right: '78px', top: '70px', color: '#888'}}>已申请</div>
-                      :
-                      ''
-                    }
-                  </List.Item>
-                )
-              }.bind(this))
-            }
-          </List.Body>
-        </List>
-      </div>
+      <TabBar
+        unselectedTintColor="#949494"
+        tintColor="#33A3F4"
+        barTintColor="white"
+      >
+        <TabBar.Item
+          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
+          title="课程"
+          key="课程"
+          selected={this.state.selectedTab === 'indexTab'}
+          onPress={() => {
+
+          }}
+        >
+          <NavBar mode="light" iconName={false} leftContent={[<Icon key="0" type="reload" />]} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;" onLeftClick={this.onClickLeft.bind(this)}>课程列表</NavBar>
+          <List>
+            <List.Body>
+              {
+                this.state.list.map(function (item, index) {
+                  return (
+                    <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.course_id)}>
+                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
+                      <div style={{width: '400px', height: '50px', flex: 2}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
+                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>剩余名额:</span> <span style={{color: '#ff0000'}}>{item.course_apply_limit - item.course_apply_count}</span></div>
+                      {
+                        item.isApply ?
+                        <div style={{position: 'absolute', right: '78px', top: '70px', color: '#888'}}>已申请</div>
+                        :
+                        ''
+                      }
+                    </List.Item>
+                  )
+                }.bind(this))
+              }
+            </List.Body>
+          </List>
+        </TabBar.Item>
+        <TabBar.Item
+          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
+          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/LWNaMdwAFSmYBFw.png' }}
+          title="我的"
+          key="我的"
+          selected={this.state.selectedTab === 'settingTab'}
+          onPress={() => {
+            this.props.router.push({
+              pathname: '/setting',
+              query: {
+
+              }
+            })
+          }}
+        >
+        </TabBar.Item>
+      </TabBar>
     )
   }
 }

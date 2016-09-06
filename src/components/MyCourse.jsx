@@ -66,7 +66,7 @@ class MyCourse extends Component {
   render() {
     return (
       <div>
-        <NavBar leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的课程</NavBar>
+        <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的课程</NavBar>
         <List>
           <List.Body>
             {

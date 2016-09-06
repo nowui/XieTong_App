@@ -4,8 +4,8 @@ import Toast from 'antd-mobile/lib/toast'
 import 'antd-mobile/lib/toast/style/index.css'
 
 const Helper = {
-	host: 'http://localhost:8080',
-  //host: 'http://api.xietong.nowui.com',
+	//host: 'http://172.31.2.43:8080',
+  host: 'http://api.xietong.nowui.com',
   inputWidth: 390,
   formItemLayout: {
     labelCol: { span: 3 },
@@ -23,7 +23,9 @@ const Helper = {
     //message.success(this.description, this.duration)
   },
 	ajax: function(config) {
-    Toast.loading('加载中...', 0)
+    if(! config.unLoad) {
+      Toast.loading('加载中...', 0)
+    }
 
     let self = this
 
@@ -40,7 +42,9 @@ const Helper = {
       },
       data: JSON.stringify(config.data),
       success: function (response) {
-        Toast.hide()
+        if(! config.unLoad) {
+          Toast.hide()
+        }
 
         if(response.code == 200) {
           config.success(response.data)
@@ -49,7 +53,9 @@ const Helper = {
         }
       },
       error: function (error) {
-        Toast.hide()
+        if(! config.unLoad) {
+          Toast.hide()
+        }
 
         Toast.fail('网络发生错误', self.duration)
       },

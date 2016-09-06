@@ -84,8 +84,8 @@ class Login extends Component {
 
     return (
       <div>
-        <NavBar iconName={false}>学生登录</NavBar>
-        <List style={{ marginTop: '50px' }}>
+        <NavBar mode="light" iconName={false}>学生登录</NavBar>
+        <List style={{ margin: '100px 20px 0px 20px'}}>
           <List.Body>
             <InputItem {...getFieldProps('user_account', {
                 initialValue: ''
@@ -104,7 +104,7 @@ class Login extends Component {
             >密码</InputItem>
           </List.Body>
         </List>
-        <div style={{ margin: '0 8px', marginTop: '100px' }}>
+        <div style={{ margin: '100px 20px 0px 20px'}}>
           <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
         </div>
       </div>

@@ -6,12 +6,14 @@ import NavBar from 'antd-mobile/lib/nav-bar'
 import List from 'antd-mobile/lib/list'
 import Button from 'antd-mobile/lib/button'
 import Icon from 'antd-mobile/lib/icon'
+import TabBar from 'antd-mobile/lib/tab-bar'
 
 
 import 'antd-mobile/lib/nav-bar/style/index.css'
 import 'antd-mobile/lib/list/style/index.css'
 import 'antd-mobile/lib/button/style/index.css'
 import 'antd-mobile/lib/icon/style/index.css'
+import 'antd-mobile/lib/tab-bar/style/index.css'
 
 import styles from './Setting.less'
 
@@ -19,6 +21,10 @@ class Setting extends Component {
 
   constructor(props) {
     super(props)
+
+    this.state = {
+      selectedTab: 'settingTab'
+    }
   }
 
   componentDidMount() {
@@ -51,30 +57,60 @@ class Setting extends Component {
 
   render() {
     return (
-      <div>
-        <NavBar leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的帐号</NavBar>
-        <List style={{ marginTop: '50px' }}>
-          <List.Body>
-            <List.Item>
-              <div className={styles.avatar}></div>
-              <div className={styles.name}>{Helper.getName()}</div>
-              <div className={styles.school}>佛山协同(国际)学校</div>
-            </List.Item>
-          </List.Body>
-        </List>
+      <TabBar
+        unselectedTintColor="#949494"
+        tintColor="#33A3F4"
+        barTintColor="white"
+      >
+        <TabBar.Item
+          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
+          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
+          title="课程"
+          key="课程"
+          selected={this.state.selectedTab === 'indexTab'}
+          onPress={() => {
+            this.props.router.push({
+              pathname: '/index',
+              query: {
 
-        <List style={{ marginTop: '50px' }}>
-          <List.Body>
-            <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this)}>
-              我申请的课程
-            </List.Item>
-          </List.Body>
-        </List>
+              }
+            })
+          }}
+        >
+        </TabBar.Item>
+        <TabBar.Item
+          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
+          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/LWNaMdwAFSmYBFw.png' }}
+          title="我的"
+          key="我的"
+          selected={this.state.selectedTab === 'settingTab'}
+          onPress={() => {
+          }}
+        >
+          <NavBar mode="light" iconName={false}>个人信息</NavBar>
+          <List style={{ marginTop: '40px' }}>
+            <List.Body>
+              <List.Item>
+                <div className={styles.avatar}></div>
+                <div className={styles.name}>{Helper.getName()}</div>
+                <div className={styles.school}>佛山协同(国际)学校</div>
+              </List.Item>
+            </List.Body>
+          </List>
 
-        <div style={{ margin: '0 8px', marginTop: '100px' }}>
-          <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
-        </div>
-      </div>
+          <List style={{ marginTop: '40px' }}>
+            <List.Body>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this)}>
+                我的课程
+              </List.Item>
+            </List.Body>
+          </List>
+
+          <div style={{ margin: '100px 20px 0px 20px'}}>
+            <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
+          </div>
+        </TabBar.Item>
+      </TabBar>
     )
   }
 }

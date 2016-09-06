@@ -55,7 +55,7 @@ class History extends Component {
     return (
       <div>
         <div className="header">
-          <NavBar leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">申请记录</NavBar>
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">申请记录</NavBar>
         </div>
         <div className="container">
           <List>
@@ -66,11 +66,11 @@ class History extends Component {
                     <List.Item key={index}>
                       {
                         item.course_apply_history_is_apply ?
-                        <div>提交申请</div>
+                        <div style={{marginTop: '20px'}}>提交申请</div>
                         :
                         <div style={{color: '#ff0000'}}>取消申请</div>
                       }
-                      <div>{item.course_apply_history_create_time}</div>
+                      <div style={{marginTop: '20px', marginBottom: '20px'}}>{item.course_apply_history_create_time}</div>
                     </List.Item>
                   )
                 }.bind(this))

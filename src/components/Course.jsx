@@ -42,7 +42,8 @@ class Course extends Component {
     this.state = {
       course: {
         course_teacher: []
-      }
+      },
+      count: 0
     }
   }
 
@@ -101,7 +102,7 @@ class Course extends Component {
   render() {
     return (
       <div>
-        <NavBar leftContent="返回" rightContent={[<Link key="0" to={"/history/" + this.props.params.course_id} style={{color: '#ffffff'}}>记录</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程明细</NavBar>
+        <NavBar mode="light" leftContent="返回" rightContent={[<Icon key="1" type="reload" style={{color: '#ffffff'}}/>,<Link key="0" to={"/history/" + this.props.params.course_id} style={{color: '#108ee9'}}>记录</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程明细</NavBar>
         <List>
           <List.Body>
             <List.Item extra={this.state.course.course_name}>

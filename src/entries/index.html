@@ -11,13 +11,15 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5" />
     <link rel="stylesheet" type="text/css" href="./index.css"/>
     <style>
+        body {
+            background: #ddd;
+        }
         #root {
             min-width: 640px;
             max-width: 850px;
             height: 100%;
             margin-left: auto;
             margin-right: auto;
-            background: #f6f5f3;
             position: absolute;
             top: 0;
             right: 0;
@@ -52,6 +54,22 @@
             left: 0;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
+        }
+
+        .demo-preview-item,
+        .am-tab-bar,
+        .am-tab-bar-content,
+        .am-tab-bar-tabpane {
+          height: 100%;
+        }
+
+        .am-navbar-light {
+            border-bottom: 1PX solid #ddd;
+        }
+
+        .am-tab-bar-bar {
+            min-width: 640px;
+            max-width: 850px;
         }
     </style>
 </head>
