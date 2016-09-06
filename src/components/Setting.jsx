@@ -47,8 +47,16 @@ class Setting extends Component {
   }
 
   onClickListItem(id) {
+    let url = ''
+
+    if(id == 0) {
+      url = '/mycourse'
+    } else {
+      url = '/password'
+    }
+
     this.props.router.push({
-      pathname: '/mycourse',
+      pathname: url,
       query: {
 
       }
@@ -100,8 +108,11 @@ class Setting extends Component {
 
           <List style={{ marginTop: '40px' }}>
             <List.Body>
-              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this)}>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 0)}>
                 我的课程
+              </List.Item>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 1)}>
+                重置密码
               </List.Item>
             </List.Body>
           </List>

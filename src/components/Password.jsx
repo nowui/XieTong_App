@@ -16,7 +16,7 @@ import 'antd-mobile/lib/input-item/style/index.css'
 import 'antd-mobile/lib/button/style/index.css'
 import 'antd-mobile/lib/toast/style/index.css'
 
-class Login extends Component {
+class Password extends Component {
 
   constructor(props) {
     super(props)
@@ -34,6 +34,8 @@ class Login extends Component {
   onClickSubmit() {
     let self = this
 
+    console.log(99)
+
     self.props.form.validateFields((errors, values) => {
       if (!!errors) {
         let message = ''
@@ -47,35 +49,34 @@ class Login extends Component {
         return
       }
 
-      if(values.user_account == '') {
-        Toast.fail('学号为空', Helper.duration)
-
-        return
-      }
-
       if(values.user_password == '') {
         Toast.fail('密码为空', Helper.duration)
 
         return
       }
 
+      if(values.user_password_2 == '') {
+        Toast.fail('确认密码为空', Helper.duration)
+
+        return
+      }
+
+      if(values.user_password != values.user_password_2) {
+        Toast.fail('两个密码不一致', Helper.duration)
+
+        return
+      }
+
       Helper.ajax({
-        url: '/student/login',
+        url: '/student/password/update',
         data: values,
         success: function(data) {
-          Helper.login(data.token, data.student_name)
-
-          Toast.success('登录成功', self.duration)
+          Toast.success('修改成功', self.duration)
 
           setTimeout(function() {
             Toast.hide()
 
-            self.props.router.push({
-              pathname: '/index',
-              query: {
-
-              }
-            })
+            self.onClickLeft()
           }, 1500)
 
 
@@ -87,29 +88,35 @@ class Login extends Component {
     })
   }
 
+  onClickLeft() {
+    this.props.router.goBack()
+  }
+
   render() {
     const { getFieldProps } = this.props.form
 
     return (
       <div>
-        <NavBar mode="light" iconName={false}>学生登录</NavBar>
+        <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">重置密码</NavBar>
         <List style={{ margin: '100px 20px 0px 20px'}}>
           <List.Body>
-            <InputItem {...getFieldProps('user_account', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入学号"
-              >学号</InputItem>
-            <InputItem
-              {...getFieldProps('user_password', {
+            <InputItem {...getFieldProps('user_password', {
                 initialValue: ''
               })}
               type="password"
               format="password"
               clear
-              placeholder="请输入密码"
-            >密码</InputItem>
+              placeholder="请输入新的密码"
+              >新的密码</InputItem>
+            <InputItem
+              {...getFieldProps('user_password_2', {
+                initialValue: ''
+              })}
+              type="password"
+              format="password"
+              clear
+              placeholder="请输入确认密码"
+            >确认密码</InputItem>
           </List.Body>
         </List>
         <div style={{ margin: '100px 20px 0px 20px'}}>
@@ -120,8 +127,8 @@ class Login extends Component {
   }
 }
 
-Login = Form.create({
+Password = Form.create({
 
-})(Login)
+})(Password)
 
-export default withRouter(Login)
+export default withRouter(Password)

@@ -135,7 +135,7 @@ class Course extends Component {
             </List.Item>
           </List.Body>
         </List>
-        <div style={{ margin: '0 8px', marginTop: '30px' }}>
+        <div style={{ margin: '80px 20px 0px 20px'}}>
           {
             this.state.course.isApply ?
             <Button onClick={this.onClickSubmit.bind(this, false)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>取消申请</Button>
