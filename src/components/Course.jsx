@@ -102,49 +102,53 @@ class Course extends Component {
   render() {
     return (
       <div>
-        <NavBar mode="light" leftContent="返回" rightContent={[<Icon key="1" type="reload" style={{color: '#ffffff'}}/>,<Link key="0" to={"/history/" + this.props.params.course_id} style={{color: '#108ee9'}}>记录</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程明细</NavBar>
-        <List>
-          <List.Body>
-            <List.Item extra={this.state.course.course_name}>
-              课程名称
-            </List.Item>
-            <List.Item extra={
-              this.state.course.course_teacher.map(function (item, index) {
-                return (
-                  <span key={index}>{index > 0 ? ',' : ''}{item}</span>
-                )
-              }.bind(this))
-            }>
-              上课老师
-            </List.Item>
-            <List.Item extra={this.state.course.course_class}>
-              上课时间
-            </List.Item>
-            <List.Item extra={this.state.course.course_apply_limit}>
-              限制人数
-            </List.Item>
-            <List.Item extra={this.state.course.course_address}>
-              上课地点
-            </List.Item>
-            <List.Item extra={this.state.course.course_remark}>
-              自备材料
-            </List.Item>
-            <List.Item>
-              <div style={{marginTop: '20px'}}>课程介绍:</div>
-              <div style={{color: '#666', marginTop: '20px', marginBottom: '20px'}}>{this.state.course.course_content}</div>
-            </List.Item>
-          </List.Body>
-        </List>
-        <div style={{ margin: '80px 20px 0px 20px'}}>
-          {
-            this.state.course.isApply ?
-            <Button onClick={this.onClickSubmit.bind(this, false)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>取消申请</Button>
-            :
-              this.state.count == 0 ?
-              ''
+        <div className="header">
+          <NavBar mode="light" leftContent="返回" rightContent={[<Icon key="1" type="reload" style={{color: '#ffffff'}}/>,<Link key="0" to={"/history/" + this.props.params.course_id} style={{color: '#108ee9'}}>记录</Link>]} onLeftClick={this.onClickLeft.bind(this)}>课程明细</NavBar>
+        </div>
+        <div className="container">
+          <List>
+            <List.Body>
+              <List.Item extra={this.state.course.course_name}>
+                课程名称
+              </List.Item>
+              <List.Item extra={
+                this.state.course.course_teacher.map(function (item, index) {
+                  return (
+                    <span key={index}>{index > 0 ? ',' : ''}{item}</span>
+                  )
+                }.bind(this))
+              }>
+                上课老师
+              </List.Item>
+              <List.Item extra={this.state.course.course_class}>
+                上课时间
+              </List.Item>
+              <List.Item extra={this.state.course.course_apply_limit}>
+                限制人数
+              </List.Item>
+              <List.Item extra={this.state.course.course_address}>
+                上课地点
+              </List.Item>
+              <List.Item extra={this.state.course.course_remark}>
+                自备材料
+              </List.Item>
+              <List.Item>
+                <div style={{marginTop: '20px'}}>课程介绍:</div>
+                <div style={{color: '#666', marginTop: '20px', marginBottom: '20px'}}>{this.state.course.course_content}</div>
+              </List.Item>
+            </List.Body>
+          </List>
+          <div style={{ margin: '80px 20px 0px 20px'}}>
+            {
+              this.state.course.isApply ?
+              <Button onClick={this.onClickSubmit.bind(this, false)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>取消申请</Button>
               :
-              <Button type="primary" onClick={this.onClickSubmit.bind(this, true)}>提交申请</Button>
-          }
+                this.state.count == 0 ?
+                ''
+                :
+                <Button type="primary" onClick={this.onClickSubmit.bind(this, true)}>提交申请</Button>
+            }
+          </div>
         </div>
       </div>
     )

@@ -15,9 +15,9 @@ import 'antd-mobile/lib/button/style/index.css'
 import 'antd-mobile/lib/icon/style/index.css'
 import 'antd-mobile/lib/tab-bar/style/index.css'
 
-import styles from './Setting.less'
+import styles from './Mine.less'
 
-class Setting extends Component {
+class Mine extends Component {
 
   constructor(props) {
     super(props)
@@ -95,30 +95,34 @@ class Setting extends Component {
           onPress={() => {
           }}
         >
-          <NavBar mode="light" iconName={false}>个人信息</NavBar>
-          <List style={{ marginTop: '40px' }}>
-            <List.Body>
-              <List.Item>
-                <div className={styles.avatar}></div>
-                <div className={styles.name}>{Helper.getName()}</div>
-                <div className={styles.school}>佛山协同(国际)学校</div>
-              </List.Item>
-            </List.Body>
-          </List>
+          <div className="header">
+            <NavBar mode="light" iconName={false}>个人信息</NavBar>
+          </div>
+          <div className="container">
+            <List style={{ marginTop: '40px' }}>
+              <List.Body>
+                <List.Item>
+                  <div className={styles.avatar}></div>
+                  <div className={styles.name}>{Helper.getName()}</div>
+                  <div className={styles.school}>佛山协同(国际)学校</div>
+                </List.Item>
+              </List.Body>
+            </List>
 
-          <List style={{ marginTop: '40px' }}>
-            <List.Body>
-              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 0)}>
-                我的课程
-              </List.Item>
-              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 1)}>
-                重置密码
-              </List.Item>
-            </List.Body>
-          </List>
+            <List style={{ marginTop: '40px' }}>
+              <List.Body>
+                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 0)}>
+                  我的课程
+                </List.Item>
+                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, 1)}>
+                  重置密码
+                </List.Item>
+              </List.Body>
+            </List>
 
-          <div style={{ margin: '100px 20px 0px 20px'}}>
-            <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
+            <div style={{ margin: '100px 20px 0px 20px'}}>
+              <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
+            </div>
           </div>
         </TabBar.Item>
       </TabBar>
@@ -126,4 +130,4 @@ class Setting extends Component {
   }
 }
 
-export default withRouter(Setting)
+export default withRouter(Mine)

@@ -77,7 +77,7 @@ class Password extends Component {
             Toast.hide()
 
             self.onClickLeft()
-          }, 1500)
+          }, 1000)
 
 
         },
@@ -97,30 +97,34 @@ class Password extends Component {
 
     return (
       <div>
-        <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">重置密码</NavBar>
-        <List style={{ margin: '100px 20px 0px 20px'}}>
-          <List.Body>
-            <InputItem {...getFieldProps('user_password', {
-                initialValue: ''
-              })}
-              type="password"
-              format="password"
-              clear
-              placeholder="请输入新的密码"
-              >新的密码</InputItem>
-            <InputItem
-              {...getFieldProps('user_password_2', {
-                initialValue: ''
-              })}
-              type="password"
-              format="password"
-              clear
-              placeholder="请输入确认密码"
-            >确认密码</InputItem>
-          </List.Body>
-        </List>
-        <div style={{ margin: '100px 20px 0px 20px'}}>
-          <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
+        <div className="header">
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">重置密码</NavBar>
+        </div>
+        <div className="container">
+          <List style={{ margin: '100px 20px 0px 20px'}}>
+            <List.Body>
+              <InputItem {...getFieldProps('user_password', {
+                  initialValue: ''
+                })}
+                type="password"
+                format="password"
+                clear
+                placeholder="请输入新的密码"
+                >新的密码</InputItem>
+              <InputItem
+                {...getFieldProps('user_password_2', {
+                  initialValue: ''
+                })}
+                type="password"
+                format="password"
+                clear
+                placeholder="请输入确认密码"
+              >确认密码</InputItem>
+            </List.Body>
+          </List>
+          <div style={{ margin: '100px 20px 0px 20px'}}>
+            <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
+          </div>
         </div>
       </div>
     )

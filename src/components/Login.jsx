@@ -76,7 +76,7 @@ class Login extends Component {
 
               }
             })
-          }, 1500)
+          }, 1000)
 
 
         },
@@ -92,28 +92,32 @@ class Login extends Component {
 
     return (
       <div>
-        <NavBar mode="light" iconName={false}>学生登录</NavBar>
-        <List style={{ margin: '100px 20px 0px 20px'}}>
-          <List.Body>
-            <InputItem {...getFieldProps('user_account', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入学号"
-              >学号</InputItem>
-            <InputItem
-              {...getFieldProps('user_password', {
-                initialValue: ''
-              })}
-              type="password"
-              format="password"
-              clear
-              placeholder="请输入密码"
-            >密码</InputItem>
-          </List.Body>
-        </List>
-        <div style={{ margin: '100px 20px 0px 20px'}}>
-          <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
+        <div className="header">
+          <NavBar mode="light" iconName={false}>学生登录</NavBar>
+        </div>
+        <div className="container">
+          <List style={{ margin: '100px 20px 0px 20px'}}>
+            <List.Body>
+              <InputItem {...getFieldProps('user_account', {
+                  initialValue: ''
+                })}
+                clear
+                placeholder="请输入学号"
+                >学号</InputItem>
+              <InputItem
+                {...getFieldProps('user_password', {
+                  initialValue: ''
+                })}
+                type="password"
+                format="password"
+                clear
+                placeholder="请输入密码"
+              >密码</InputItem>
+            </List.Body>
+          </List>
+          <div style={{ margin: '100px 20px 0px 20px'}}>
+            <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
+          </div>
         </div>
       </div>
     )

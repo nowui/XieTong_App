@@ -66,22 +66,26 @@ class MyCourse extends Component {
   render() {
     return (
       <div>
-        <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的课程</NavBar>
-        <List>
-          <List.Body>
-            {
-              this.state.list.map(function (item, index) {
-                return (
-                  <List.Item key={index}>
-                    <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
-                    <div style={{height: '50px'}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
-                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>地点:</span> {item.course_address}</div>
-                  </List.Item>
-                )
-              }.bind(this))
-            }
-          </List.Body>
-        </List>
+        <div className="header">
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">我的课程</NavBar>
+        </div>
+        <div className="container">
+          <List>
+            <List.Body>
+              {
+                this.state.list.map(function (item, index) {
+                  return (
+                    <List.Item key={index}>
+                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
+                      <div style={{height: '50px'}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
+                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>地点:</span> {item.course_address}</div>
+                    </List.Item>
+                  )
+                }.bind(this))
+              }
+            </List.Body>
+          </List>
+        </div>
       </div>
     )
   }
