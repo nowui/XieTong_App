@@ -20,7 +20,7 @@ const validate = function (next, replace, callback) {
 const Routes = ({ history }) =>
   <Router history={history}>
     <Route path="/" onEnter={validate}>
-    	<IndexRedirect to="login" />
+    	<IndexRedirect to="index" />
       <Route path="index" component={Index}></Route>
       <Route path="course/:course_id" component={Course}></Route>
       <Route path="history/:course_id" component={History}></Route>
