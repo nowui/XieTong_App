@@ -97,8 +97,8 @@ class Index extends Component {
         barTintColor="white"
       >
         <TabBar.Item
-          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/UNQhIatjpNZHjVf.png' }}
-          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/HLkBvJOKnmOfBPO.png' }}
+          icon={{ uri: require('../assets/image/brand.png') }}
+          selectedIcon={{ uri: require('../assets/image/brand_active.png') }}
           title="课程"
           key="课程"
           selected={this.state.selectedTab === 'indexTab'}
@@ -134,8 +134,8 @@ class Index extends Component {
           </div>
         </TabBar.Item>
         <TabBar.Item
-          icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
-          selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/LWNaMdwAFSmYBFw.png' }}
+          icon={{ uri: require('../assets/image/mine.png') }}
+          selectedIcon={{ uri: require('../assets/image/mine_active.png') }}
           title="我的"
           key="我的"
           selected={this.state.selectedTab === 'settingTab'}
