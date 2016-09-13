@@ -115,9 +115,10 @@ class Login extends Component {
               >密码</InputItem>
             </List.Body>
           </List>
-          <div style={{ margin: '100px 20px 0px 20px'}}>
+          <div style={{ margin:'100px 20px 0px 20px'}}>
             <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
           </div>
+          <div style={{backgroundImage:'url(' + require('../assets/image/logo.png') + ')', margin: '80px 20px 0px 20px', height:'100px', backgroundRepeat:'no-repeat', backgroundSize:'contain'}}></div>
         </div>
       </div>
     )
