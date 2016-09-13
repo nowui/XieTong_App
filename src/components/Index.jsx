@@ -17,6 +17,7 @@ import 'antd-mobile/lib/toast/style/index.css'
 import 'antd-mobile/lib/tab-bar/style/index.css'
 
 let list = []
+let scrollTop = 0
 
 class Index extends Component {
 
@@ -27,10 +28,17 @@ class Index extends Component {
       selectedTab: 'indexTab',
       list: list
     }
+
   }
 
   componentDidMount() {
     this.load(list.length > 0)
+
+    this.refs['list'].scrollTop = scrollTop
+  }
+
+  componentWillUnmount() {
+    scrollTop = this.refs['list'].scrollTop
   }
 
   load = function(upLoad) {
@@ -101,16 +109,16 @@ class Index extends Component {
           <div className="header">
             <NavBar mode="light" iconName={false} leftContent={[<Icon key="0" type="reload" />]} rightContent="&nbsp;&nbsp;&nbsp;&nbsp;" onLeftClick={this.onClickLeft.bind(this)}>课程列表</NavBar>
           </div>
-          <div className="container">
+          <div className="container" ref='list'>
             <List style={{marginBottom: '99px'}}>
               <List.Body>
                 {
                   this.state.list.map(function (item, index) {
                     return (
                       <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.course_id)}>
-                        <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>课程:</span> {item.course_name}</div>
-                        <div style={{width: '400px', height: '50px', flex: 2}}><span style={{color: '#777777'}}>时间:</span> {item.course_class}</div>
-                        <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>剩余名额:</span> <span style={{color: '#ff0000'}}>{item.course_apply_limit - item.course_apply_count}</span></div>
+                        <div style={{marginTop: '20px', height: '50px'}}><span style={{color:'#777777', marginRight:'20px'}}>课程:</span> {item.course_name}</div>
+                        <div style={{width: '400px', height: '50px', flex: 2}}><span style={{color:'#777777', marginRight:'20px'}}>时间:</span> {item.course_class}</div>
+                        <div style={{marginBottom: '20px'}}><span style={{color:'#777777', marginRight:'20px'}}>剩余名额:</span> <span style={{color: '#ff0000'}}>{item.course_apply_limit - item.course_apply_count}</span></div>
                         {
                           item.isApply ?
                           <div style={{position: 'absolute', right: '78px', top: '70px', color: '#888'}}>已申请</div>

@@ -60,6 +60,14 @@ class Course extends Component {
         course_id: self.props.params.course_id
       },
       success: function(data) {
+        for(let j = 0; j < Helper.course_class.length; j++) {
+          if(data.course_class == Helper.course_class[j].value) {
+            data.course_class = Helper.course_class[j].text
+
+            break
+          }
+        }
+
         self.setState({
           course: data,
           count: data.course_apply_limit - data.course_apply_count
@@ -82,7 +90,9 @@ class Course extends Component {
       },
       success: function(data) {
         let course = self.state.course
+
         course.isApply = isApply
+
         self.setState({
           course: course
         })
@@ -108,37 +118,38 @@ class Course extends Component {
         <div className="container">
           <List>
             <List.Body>
-              <List.Item extra={this.state.course.course_name}>
-                课程名称
+              <List.Item className="course-list" extra={this.state.course.course_name}>
+                <span style={{color: '#777777'}}>课程名称:</span>
               </List.Item>
-              <List.Item extra={
+              <List.Item className="course-list" extra={
                 this.state.course.course_teacher.map(function (item, index) {
                   return (
                     <span key={index}>{index > 0 ? ',' : ''}{item}</span>
                   )
                 }.bind(this))
               }>
-                上课老师
+                <span style={{color: '#777777'}}>上课老师:</span>
               </List.Item>
-              <List.Item extra={this.state.course.course_class}>
-                上课时间
+              <List.Item className="course-list" extra={this.state.course.course_class}>
+                <span style={{color: '#777777'}}>上课时间:</span>
               </List.Item>
-              <List.Item extra={this.state.course.course_apply_limit}>
-                限制人数
+              <List.Item className="course-list" extra={this.state.course.course_apply_limit}>
+                <span style={{color: '#777777'}}>限制人数:</span>
               </List.Item>
-              <List.Item extra={this.state.course.course_address}>
-                上课地点
+              <List.Item className="course-list" extra={this.state.course.course_address}>
+                <span style={{color: '#777777'}}>上课地点:</span>
               </List.Item>
-              <List.Item extra={this.state.course.course_remark}>
-                自备材料
+              <List.Item className="course-list">
+                <div style={{marginTop:'20px', color: '#777777'}}>自备材料:</div>
+                <div style={{color:'#000000', marginTop:'20px', marginBottom:'20px', whiteSpace:'normal'}}>{this.state.course.course_remark}</div>
               </List.Item>
               <List.Item>
-                <div style={{marginTop: '20px'}}>课程介绍:</div>
-                <div style={{color: '#666', marginTop: '20px', marginBottom: '20px'}}>{this.state.course.course_content}</div>
+                <div style={{marginTop:'20px', color: '#777777'}}>课程介绍:</div>
+                <div style={{color:'#000000', marginTop:'20px', marginBottom:'20px', whiteSpace:'normal'}}>{this.state.course.course_content}</div>
               </List.Item>
             </List.Body>
           </List>
-          <div style={{ margin: '80px 20px 0px 20px'}}>
+          <div style={{ margin: '80px 20px 150px 20px'}}>
             {
               this.state.course.isApply ?
               <Button onClick={this.onClickSubmit.bind(this, false)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>取消申请</Button>
