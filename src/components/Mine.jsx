@@ -120,7 +120,7 @@ class Mine extends Component {
               </List.Body>
             </List>
 
-            <div style={{ margin: '100px 20px 0px 20px'}}>
+            <div style={{ margin: '100px 20px 200px 20px'}}>
               <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
             </div>
           </div>

@@ -66,11 +66,11 @@ class History extends Component {
                     <List.Item key={index}>
                       {
                         item.course_apply_history_is_apply ?
-                        <div style={{marginTop: '20px'}}>提交申请</div>
+                        <div style={{marginTop:'20px'}}>提交申请</div>
                         :
-                        <div style={{color: '#ff0000'}}>取消申请</div>
+                        <div style={{marginTop:'20px', color:'#ff0000'}}>取消申请</div>
                       }
-                      <div style={{marginTop: '20px', marginBottom: '20px'}}>{item.course_apply_history_create_time}</div>
+                      <div style={{marginTop:'20px', marginBottom:'20px'}}>{item.course_apply_history_create_time}</div>
                     </List.Item>
                   )
                 }.bind(this))
